@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot Query</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0-alpha1/css/bootstrap.min.css">
+</head>
+<body>
+
+<div class="container">
+    <h2>Chatbot Query</h2>
+    <form method="GET" action="/chatbot" class="mb-4">
+        <div class="input-group">
+            <input type="text" class="form-control" name="question" placeholder="Ask a question" required>
+            <button class="btn btn-primary" type="submit">Submit</button>
+        </div>
+    </form>
+
+    {% if question %}
+    <div class="mb-3">
+        <strong>Your Question:</strong>
+        <p>{{ question }}</p>
+    </div>
+    {% endif %}
+
+    {% if answer %}
+    <div class="alert alert-info">
+        <strong>Answer:</strong>
+        <p>{{ answer }}</p>
+    </div>
+    {% elif question == "" %}
+    <div class="alert alert-warning">
+        <p>Please enter a question above to get a response.</p>
+    </div>
+    {% endif %}
+
+    <a href="{{ url_for('index') }}" class="btn btn-secondary mt-4">Go Back</a>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0-alpha1/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

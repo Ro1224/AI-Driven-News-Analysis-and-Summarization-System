@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI-Driven News Analysis and Summarization System</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    body {
+      background: url("/static/img1.jpg") no-repeat center center fixed; /* Update the path */
+      background-size: cover;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: white;
+    }
+    .container {
+      background: rgba(0, 0, 0, 0.6);
+      padding: 40px;
+      border-radius: 12px;
+      text-align: center;
+      width: 90%;
+      max-width: 600px;
+    }
+    h1 {
+      font-size: 32px;
+      margin-bottom: 20px;
+    }
+    form {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      margin-top: 20px;
+    }
+    input[type="url"] {
+      padding: 10px;
+      border: none;
+      border-radius: 6px 0 0 6px;
+      width: 70%;
+      font-size: 16px;
+    }
+    button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 0 6px 6px 0;
+      background-color: #4CAF50;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+    footer {
+      position: absolute;
+      bottom: 10px;
+      color: #ccc;
+      text-align: center;
+      width: 100%;
+      font-size: 14px;
+    }
+    @media (max-width: 600px) {
+      form {
+        flex-direction: column;
+      }
+      input[type="url"], button {
+        width: 100%;
+        border-radius: 6px;
+        margin: 5px 0;
+      }
+      button {
+        border-radius: 6px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>AI-Driven News Analysis and Summarization System</h1>
+    <form action="/" method="POST">
+      <input type="url" name="url" placeholder="Enter news article link" required>
+      <button type="submit">Summarize</button>
+    </form>
+  </div>
+  <footer>&copy; 2025 AI News Project. All rights reserved.</footer>
+</body>
+</html>

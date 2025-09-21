@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>News Summary</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #fdfbfb, #ebedee);
+      min-height: 100vh;
+    }
+    .container {
+      max-width: 1000px;
+      margin: 50px auto;
+      background-color: white;
+      padding: 50px;
+      border-radius: 16px;
+      box-shadow: 0 0 25px rgba(0, 0, 0, 0.05);
+      position: relative;
+    }
+    .back-btn {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      background-color: #ffd6cc;
+      color: #5a2c24;
+      border: none;
+      padding: 10px 16px;
+      font-size: 14px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    .back-btn:hover { background-color: #ffc4b3; }
+    h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 28px;
+    }
+    .summary-box {
+      background-color: #f0f8ff;
+      padding: 25px;
+      border-radius: 10px;
+      font-size: 17px;
+      color: #333;
+      line-height: 1.7;
+    }
+    .buttons {
+      margin-top: 35px;
+      display: flex;
+      justify-content: center;
+      gap: 25px;
+      flex-wrap: wrap;
+    }
+    button {
+      padding: 12px 24px;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .translate-btn {
+      background-color: #e7c6ff;
+      color: #5d3a8a;
+    }
+    .translate-btn:hover {
+      background-color: #dbb3ff;
+      transform: scale(1.05);
+    }
+    .query-btn {
+      background-color: #cbf1cc;
+      color: #35654d;
+    }
+    .query-btn:hover {
+      background-color: #b8e8b9;
+      transform: scale(1.05);
+    }
+    .translated-section {
+      margin-top: 40px;
+      background-color: #fffbe6;
+      padding: 20px;
+      border-left: 6px solid #ffc107;
+      border-radius: 10px;
+      font-size: 16px;
+      color: #444;
+    }
+    .reliability-box {
+      margin-top: 25px;
+      font-size: 16px;
+      text-align: center;
+      padding: 12px;
+      border-radius: 8px;
+      background-color: #f9f9f9;
+      color: #333;
+      border: 1px solid #ddd;
+    }
+    footer {
+      text-align: center;
+      margin-top: 60px;
+      color: #888;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <button class="back-btn" onclick="window.location.href='/'">← Back</button>
+    <h2>Summarized News</h2>
+
+    <!-- Display the Summary -->
+    <div class="summary-box">
+      {% if summary %}
+        <p>{{ summary }}</p>
+      {% else %}
+        <p>No summary available.</p>
+      {% endif %}
+    </div>
+
+    <!-- Display Reliability -->
+    {% if reliability is not none %}
+    <div class="reliability-box">
+      <strong>Reliability:</strong>
+      {{ 'Reliable' if reliability == 1 else 'Not Reliable' }}
+    </div>
+    {% endif %}
+
+    <!-- Translate Form -->
+    <form class="buttons" method="POST" action="{{ url_for('translate_route') }}">
+      <input type="hidden" name="summary" value="{{ summary }}">
+      <input type="hidden" name="news_url" value="{{ url }}">
+      <select name="language" required>
+        <option value="en">English</option>
+        <option value="es">Spanish</option>
+        <option value="fr">French</option>
+        <option value="de">German</option>
+        <option value="ta">Tamil</option>
+        <option value="hi">Hindi</option>
+      </select>
+      <button class="translate-btn" type="submit">Translate the Summary</button>
+    </form>
+
+    <!-- Chatbot Form -->
+    <form action="/chatbot" method="GET">
+  <label for="question">Ask a Question:</label>
+  <input type="text" id="question" name="question" required>
+  <button type="submit">Submit</button>
+</form>
+
+
+    <!-- Translated Summary -->
+    {% if translated_summary %}
+    <div class="translated-section">
+      <h3>Translated Summary:</h3>
+      <p>{{ translated_summary }}</p>
+    </div>
+    {% endif %}
+  </div>
+
+  <footer>&copy; 2025 AI News Project. All rights reserved.</footer>
+</body>
+</html>
