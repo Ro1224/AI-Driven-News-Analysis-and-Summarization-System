@@ -1,4 +1,4 @@
-# AI-Driven News Summarizer, Translator & Chatbot
+# AI-Driven News Analysis and Summarization System
 
 ## Overview
 This project is a web application that allows users to:
