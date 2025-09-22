@@ -99,5 +99,3 @@ python chatbot.py
 
 ---
 
-## License
-This project is for educational and research purposes only. See `LICENSE` for details.
